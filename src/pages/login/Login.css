@@ -1,0 +1,43 @@
+.main{
+    margin: auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 25vw;
+    height: 60vh;
+}
+
+.pagename{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bolder;   
+}
+
+.ininputBoxDiv{
+    width: 100%;
+    height: 65%;
+}
+
+.intextBox{
+    width: 70%;
+    height: 75px;
+}
+
+
+.loginbtn{
+    width: 70%;
+}
+
+.optbtn{
+    text-transform: none !important; 
+    
+}
+
+.optionbtn{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}

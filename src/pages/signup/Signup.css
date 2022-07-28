@@ -1,0 +1,44 @@
+.upmain{
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 25vw;
+    height: 60vh;
+}
+
+.uppagename{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bolder;   
+}
+
+.upinputBoxDiv{
+    width: 100%;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.uptextBox{
+    width: 70%;
+    height: 50px;
+}
+
+.btnstyle{
+    margin-top: 20px;
+}
+.signupbtn{
+    width: 70%;
+}
+
+.optionbtn{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
