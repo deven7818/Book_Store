@@ -1,0 +1,44 @@
+.booksMain{
+    display: flex;
+    flex-wrap: wrap;
+    
+   
+}
+
+.totalBooks{
+    display: flex;
+    
+}
+
+.bookimgsec{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.bookInfo{
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: center;
+}
+.rating{
+    display: flex;
+    width: 100%;
+    
+}
+
+
+.star{
+    color: #ffffff;
+    border-radius: 2px;
+    background-color: #388E3C;
+}
+
+.bothPrice{
+    display: flex;
+}
+
+.price{
+    opacity: 0.5;
+}

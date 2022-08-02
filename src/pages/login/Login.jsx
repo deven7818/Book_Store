@@ -2,6 +2,7 @@ import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import React, { useState } from 'react'
+import { logIn, logInService } from '../../service/userservice';
 import "./Login.css";
 
 
@@ -44,6 +45,18 @@ function Login(props) {
         else if (passwordTest === false) {
             setRegObj((prevState) => ({ ...prevState, passwordBorder: true, passwordHelper: 'Enter Password' }))
         }
+
+        if(emailTest === true && passwordTest === true){
+            logInService(loginObj).then((response) => {
+                console.log(response);
+                localStorage.setItem('token',response.data.id)
+                // navigate("/dashboard")
+        
+              }).catch((error) => {
+                console.log(error)
+              })
+        }
+        console.log(loginObj);
     }
 
     return (

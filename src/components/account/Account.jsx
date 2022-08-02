@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import Login from '../../pages/login/Login';
 import Signup from '../../pages/signup/Signup';
 import shopImg from '../Images/BookShopping.png'
-import "./Home.css";
+import "./Account.css";
 
-function Home() {
+function Account() {
 
-  const [view, setView] = useState(true);
+  const [page, setPage] = useState(true);
 
-  const viewone = (view) => {
+  const viewone = (page) => {
     return (
       <>
-        {view ? (
+        {page ? (
           <Login listenToLogin={listenToLogin} />
         ) : (
           <Signup listenToSignup={listenToSignup} />
@@ -21,11 +21,11 @@ function Home() {
   };
 
   const listenToLogin = () => {
-    setView(!view);
+    setPage(!page);
   };
 
   const listenToSignup = () => {
-    setView(!view);
+    setPage(!page);
   };
 
 
@@ -33,12 +33,14 @@ function Home() {
     <div className='homeSection'>
       <div className='imgSection'>
         <div className=''>
-          <img className='imgShopping' src={shopImg} />
+          <img className='imgShopping' src={shopImg} alt=''/>
+          <h3 className='online'>ONLINE BOOK SHOPPING</h3>
         </div>
+       
 
       </div>
       <div className='logsign'>
-        {viewone(view)}
+        {viewone(page)}
         {/* <Signup /> */}
         {/* <Login /> */}
       </div>
@@ -46,4 +48,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Account

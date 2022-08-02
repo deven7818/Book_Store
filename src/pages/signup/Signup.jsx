@@ -1,6 +1,7 @@
 import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import React, { useState } from 'react'
+import { signUpService } from '../../service/userservice';
 import "./Signup.css";
 
 
@@ -68,6 +69,16 @@ function Signup(props) {
         else if (mobileTest === false) {
             setRegexObj((prevState) => ({ ...prevState, mobileBorder: true, mobileHelper: 'Enter Mobile Number' }))
         }
+
+        if(fNameTest === true && emailTest === true && passwordTest === true && mobileTest === true){
+            signUpService(signupObj).then((response) => {
+                console.log(response);
+                localStorage.setItem('token',response.data.id)
+            }).catch((error) => {
+                console.log(error);
+            })
+        }
+        console.log(signupObj);
     }
 
 

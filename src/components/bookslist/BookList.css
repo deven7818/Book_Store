@@ -1,0 +1,10 @@
+.bookslist{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  
+}
+.bookHeading{
+    display: flex;
+    margin-bottom: 20px;
+}
