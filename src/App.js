@@ -6,6 +6,9 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Books from './components/books/Books';
 import BookList from './components/bookslist/BookList';
+import QuickView from './components/quickview/QuickView';
+import Router1 from './routers/router';
+
 
 function App() {
   return (
@@ -15,9 +18,14 @@ function App() {
       {/* <Header /> */}
       {/* <Footer /> */}
       {/* <Account /> */}
-      <Header />
-      <BookList  />
-      <Footer />
+     
+      {/* <Header /> */}
+      {/* <BookList  />  */}
+      {/* <QuickView /> */}
+      {/* <Footer /> */}
+
+        <Router1 />
+
     </div>
   );
 }

@@ -12,12 +12,12 @@ import bookimg from '../Images/Image11.png'
 
 function Books(props) {
 
-    const [editBooks, setEditBooks] = useState({ bookName: '', author: '', price: '', discountPrice: '' })
+   // const [editBooks, setEditBooks] = useState({ bookName: '', author: '', price: '', discountPrice: '' })
 
-    console.log(props, "render book");
+    //console.log(props, "render book");
 
     return (
-        <div className='booksMain'>
+        <div className='booksMain' onClick={()=>{props.nextPage(props.book)}}>
 
             <div className='totalBooks'>
                 <div className=''>
