@@ -17,6 +17,8 @@ function Books(props) {
     //console.log(props, "render book");
 
     return (
+        <div>
+        
         <div className='booksMain' onClick={()=>{props.nextPage(props.book)}}>
 
             <div className='totalBooks'>
@@ -62,6 +64,7 @@ function Books(props) {
                 </div>
             </div>
 
+        </div>
         </div>
     )
 }

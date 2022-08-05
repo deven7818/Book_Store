@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getBooksList } from '../../service/dataservice';
 import Books from '../books/Books';
+import Header from '../header/Header';
 import QuickView from '../quickview/QuickView';
 import './BookList.css';
 
@@ -15,7 +16,7 @@ function BookList() {
 
     const nextPage = (book) => {
          setCurrentBook(book); setView(!view);
-        console.log('hetiyo')
+        
     }
 
     const viewone = (view) => {
@@ -23,6 +24,7 @@ function BookList() {
             <>
                 {view ? (
                     <>
+                    
                         <h4 className='container bookHeading'>Books</h4>
                         <div className="container bookslist ">
                             {books.map((book) => (<Books nextPage={nextPage} key={book._id} book={book} />))}
@@ -39,7 +41,7 @@ function BookList() {
 
     const getBooks = () => {
         getBooksList().then((response) => {
-            //console.log(response, "rendering data");
+           console.log(response, "rendering data");
             setBooks(response.data.result)
             // console.log(response.data.result);
 
@@ -56,6 +58,9 @@ function BookList() {
 
     return (
         <>
+        <div>
+            <Header />
+        </div>
             {viewone(view)}
         </>
     )

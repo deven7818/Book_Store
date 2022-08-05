@@ -13,95 +13,207 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { addToBagApi, cartItem, getBooksList, getCartItem, updateApi } from '../../service/dataservice';
+import Header from '../header/Header';
 
 function QuickView(props) {
 
+    const [addItem, setAddItem] = useState([])
+    
+    const [quantityAdd, setQuantityAdd] = useState([])
 
-    // const [viewBooks, setViewBooks] = useState({ bookName: '', author: '', price: '', discountPrice: '', description: '' })
+    const [getCartDetails, setGetCartDetails] = useState([])
 
-    // console.log(props, "book list");
 
-   
+    //for add to cart
+    const addToBag = (addItem) => {
+        return (
+            <>
+                {(addItem === 0) ? (
+
+                    <Button variant="contained" color='error' onClick={addbagbtn} >Add to Bag</Button>
+                ) : (
+                    <Button variant="" ><RemoveCircleOutlineOutlinedIcon onClick={decrement}/>{quantityAdd}
+                                                        <AddCircleOutlineOutlinedIcon onClick={increment} /></Button>
+
+                )}
+            </>
+            
+        )
+    };
+
+    // const addbagbtn = () => {
+        
+    //     //setAddItem(addItem);
+    //     console.log(addItem);
+    // }
+    const addbagbtn = () => {
+        let data = props.book._id;
+        addToBagApi(data).then((response) => { console.log(response); }).catch((error) => { console.log(error) })
+    }
+
+    // const count = () => {
+    //     setAddItem(addItem);
+    // }
+
+
+
+    //Get cart item with filter method
+    const GetCartItem = () => {
+        getCartItem().then((response) => {
+            console.log(response);
+            let filter = [];
+            console.log(props.book._id);
+            filter = response.data.result.filter((cart) => {
+                if (cart.product_id._id === props.book._id) {
+                    console.log(cart);
+                    setAddItem(cart._id)
+                    setQuantityAdd(cart.quantityToBuy)
+                    return cart;
+                    
+                }
+                // console.log(cart);
+            })
+           
+            setGetCartDetails(filter)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
+    ////increment cart item
+    const increment = () =>{
+        console.log(quantityAdd);
+        let cartIdInc = {
+            id: addItem,
+            quantityToBuy: quantityAdd + 1
+        } 
+        console.log(cartIdInc);
+        updateApi(cartIdInc).then((response)=>{console.log(response);
+            GetCartItem()   
+        } ).catch((error)=> console.log(error))
+    }
+    console.log(addItem);
+    ////decrement cart item
+    const decrement = () => {
+       
+        let cartIdInc = {
+            id:addItem,
+            
+            quantityToBuy: quantityAdd - 1
+        } 
+        console.log(cartIdInc);
+        updateApi(cartIdInc).then((response)=>{console.log(response);
+            GetCartItem() 
+        } ).catch((error)=> console.log(error))    
+    }
+
+    /////
+
+    const addToCart = () => {
+        let data = props.book._id
+        console.log(data);
+        console.log(addItem);
+        addToBagApi(data).then((response) => {
+            console.log(response, "add data to cart");
+            // setAddItem(response.data.result)
+            // console.log(response.data.result);
+
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+
+    useEffect(() => {
+        addToCart()
+        GetCartItem()
+    },[])
+
+
+
     return (
-        <div className=' container quickview'>
-            <div className='smallImg'>
-                <div className='bookimgsec'>
-                    <CardMedia
-                        sx={{ maxWidth: 30, maxHeight: 40 }}
-                        component="img"
-                        alt="green iguana"
-                        image={bookimg}
-                    />
-                </div>
+        <div>
+            <div>
+                {/* <Header /> */}
             </div>
-            <div className=''>
-                <Card sx={{ width: 350, height: 350 }}>
+            <div className=' container quickview'>
+                <div className='smallImg'>
                     <div className='bookimgsec'>
                         <CardMedia
-                            sx={{ width: 230, height: 300 }}
+                            sx={{ maxWidth: 30, maxHeight: 40 }}
                             component="img"
                             alt="green iguana"
                             image={bookimg}
                         />
                     </div>
-                </Card>
-                <div className='addbtn'>
-                    <div>
-                    <Button variant="contained" color='error'>Add to Bag</Button>
-                    <Button variant="" ><RemoveCircleOutlineOutlinedIcon />count <AddCircleOutlineOutlinedIcon /></Button>
-                    </div>
-                    <Button variant="contained" color='error'
-                        sx={{ color: 'white', backgroundColor: 'black' }}>
-                        <FavoriteIcon />Wishlist</Button>
                 </div>
-            </div>
-            <div className='bookViewDetails'>
-                <Card >
-
-                    <div className='aboutBook'>
-                        <CardContent>
-
-                            <Typography>
-                                <div className=''>{props.book.bookName}</div>
-                            </Typography>
-
-                            <Typography className='aboutBook' color="text.secondary">
-                                <div className=''>{props.book.author}</div>
-                            </Typography>
-
-                            <Typography className='ratingdetails'>
-                                <div className='rateStar'>4.5 *</div>
-                                <div className='lightTitle'>(20)</div>
-                            </Typography>
-
-                            <Typography className='bothPrice'>
-                                <div className=''>Rs.{props.book.discountPrice}</div>
-                                <del>
-                                    <div className='lightTitle'>Rs.{props.book.price}</div>
-                                </del>
-                            </Typography>
-
-                        </CardContent>
+                <div className=''>
+                    <Card sx={{ width: 350, height: 350 }}>
+                        <div className='bookimgsec'>
+                            <CardMedia
+                                sx={{ width: 230, height: 300 }}
+                                component="img"
+                                alt="green iguana"
+                                image={bookimg}
+                            />
+                        </div>
+                    </Card>
+                    <div className='addbtn'>
+                        <div>
+                            {addToBag(addItem)}
+                        </div>
+                        <Button variant="contained" color='error'
+                            sx={{ color: 'white', backgroundColor: 'black' }}>
+                            <FavoriteIcon />Wishlist</Button>
                     </div>
+                </div>
+                <div className='bookViewDetails'>
+                    <Card >
 
-                </Card>
+                        <div className='aboutBook'>
+                            <CardContent>
 
-                <Card >
-                    <div className=''>
-                        <CardContent>
+                                <Typography>
+                                    <div className=''>{props.book.bookName}</div>
+                                </Typography>
 
-                            <Typography>
-                                <div className=' lightTitle'>Book Detail</div>
-                            </Typography>
+                                <Typography className='aboutBook' color="text.secondary">
+                                    <div className=''>{props.book.author}</div>
+                                </Typography>
 
-                            <Typography className='aboutBook' color="text.secondary">
-                                <div className=''>{props.book.description }</div>
-                            </Typography>
+                                <Typography className='ratingdetails'>
+                                    <div className='rateStar'>4.5 *</div>
+                                    <div className='lightTitle'>(20)</div>
+                                </Typography>
 
-                        </CardContent>
-                    </div>
-                </Card>
-               
+                                <Typography className='bothPrice'>
+                                    <div className=''>Rs.{props.book.discountPrice}</div>
+                                    <del>
+                                        <div className='lightTitle'>Rs.{props.book.price}</div>
+                                    </del>
+                                </Typography>
+
+                            </CardContent>
+                        </div>
+
+                    </Card>
+
+                    <Card >
+                        <div className=''>
+                            <CardContent>
+
+                                <Typography>
+                                    <div className=' lightTitle'>Book Detail</div>
+                                </Typography>
+
+                                <Typography className='aboutBook' color="text.secondary">
+                                    <div className=''>{props.book.description}</div>
+                                </Typography>
+
+                            </CardContent>
+                        </div>
+                    </Card>
+
                     <div className='feedback'>
                         <CardContent>
 
@@ -110,28 +222,29 @@ function QuickView(props) {
                             </Typography>
                         </CardContent>
                     </div>
-                
-                    <Card>
-                    <div className='overallRate'>
-                        <CardContent>
-                            <Typography className='' >
-                                <div className='overall'>Overall reting</div>
-                                <TextareaAutosize
-                                    aria-label="minimum height"
-                                    minRows={2}
-                                    placeholder="Write your review"
-                                    style={{ width: 500 }}
-                                />
-                                
-                            </Typography>
-                            <div className='submitBtn'>
-                            <Button  variant="contained" color='primary'>Submit</Button>
-                            </div>
-                        </CardContent>
-                    </div>
-                    </Card>
-            </div>
 
+                    <Card>
+                        <div className='overallRate'>
+                            <CardContent>
+                                <Typography className='' >
+                                    <div className='overall'>Overall reting</div>
+                                    <TextareaAutosize
+                                        aria-label="minimum height"
+                                        minRows={2}
+                                        placeholder="Write your review"
+                                        style={{ width: 500 }}
+                                    />
+
+                                </Typography>
+                                <div className='submitBtn'>
+                                    <Button variant="contained" color='primary'>Submit</Button>
+                                </div>
+                            </CardContent>
+                        </div>
+                    </Card>
+                </div>
+
+            </div>
         </div>
     )
 }

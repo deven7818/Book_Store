@@ -3,6 +3,9 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import React, { useState } from 'react'
 import { logIn, logInService } from '../../service/userservice';
+
+import { useNavigate } from "react-router-dom";
+
 import "./Login.css";
 
 
@@ -11,6 +14,9 @@ const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).
 
 
 function Login(props) {
+
+    let navigate = useNavigate();
+
 
     const [loginObj, setLoginObj] = useState({ email: '', passsword: '' });
     const [regObj, setRegObj] = useState({
@@ -49,8 +55,8 @@ function Login(props) {
         if(emailTest === true && passwordTest === true){
             logInService(loginObj).then((response) => {
                 console.log(response);
-                localStorage.setItem('token',response.data.id)
-                // navigate("/dashboard")
+                localStorage.setItem('token',response.data.result.accessToken)
+                navigate("/booklist")
         
               }).catch((error) => {
                 console.log(error)
