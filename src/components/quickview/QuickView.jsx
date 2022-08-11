@@ -13,50 +13,52 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import { addToBagApi, cartItem, getBooksList, getCartItem, updateApi } from '../../service/dataservice';
+import { addToBagApi, addTowishlistApi, getCartItem, getWishlistItem, updateApi } from '../../service/dataservice';
 import Header from '../header/Header';
 
 function QuickView(props) {
 
     const [addItem, setAddItem] = useState([])
-    
+
     const [quantityAdd, setQuantityAdd] = useState([])
 
     const [getCartDetails, setGetCartDetails] = useState([])
 
+    const [wishlistId, setWishlistId] = useState()
 
-    //for add to cart
-    const addToBag = (addItem) => {
-        return (
-            <>
-                {(addItem === 0) ? (
 
-                    <Button variant="contained" color='error' onClick={addbagbtn} >Add to Bag</Button>
-                ) : (
-                    <Button variant="" ><RemoveCircleOutlineOutlinedIcon onClick={decrement}/>{quantityAdd}
-                                                        <AddCircleOutlineOutlinedIcon onClick={increment} /></Button>
 
-                )}
-            </>
-            
-        )
-    };
 
-    // const addbagbtn = () => {
-        
-    //     //setAddItem(addItem);
-    //     console.log(addItem);
-    // }
+    //add item to bag api
     const addbagbtn = () => {
         let data = props.book._id;
-        addToBagApi(data).then((response) => { console.log(response); }).catch((error) => { console.log(error) })
+        addToBagApi(data).then((response) => { 
+            console.log(response); 
+        }).catch((error) => { 
+            console.log(error);
+         })
     }
 
-    // const count = () => {
-    //     setAddItem(addItem);
-    // }
+    //add item to wishlist api
+    const addToWishlist = () => {
+        let data = props.book.id;
+        addTowishlistApi(data).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
 
-
+    //get wishlist item
+    const AddToWishlist = () => {
+        getWishlistItem().then((response) => {
+            console.log(response);
+            setWishlistId(response.data.result._id)
+            console.log(response.data.result.product_id);
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
 
     //Get cart item with filter method
     const GetCartItem = () => {
@@ -70,11 +72,12 @@ function QuickView(props) {
                     setAddItem(cart._id)
                     setQuantityAdd(cart.quantityToBuy)
                     return cart;
-                    
+
                 }
+
                 // console.log(cart);
             })
-           
+
             setGetCartDetails(filter)
         }).catch((error) => {
             console.log(error)
@@ -82,30 +85,34 @@ function QuickView(props) {
     }
 
     ////increment cart item
-    const increment = () =>{
+    const increment = () => {
         console.log(quantityAdd);
         let cartIdInc = {
             id: addItem,
             quantityToBuy: quantityAdd + 1
-        } 
+        }
         console.log(cartIdInc);
-        updateApi(cartIdInc).then((response)=>{console.log(response);
-            GetCartItem()   
-        } ).catch((error)=> console.log(error))
+        updateApi(cartIdInc).then((response) => {
+            console.log(response);
+            GetCartItem()
+        }).catch((error) => console.log(error))
     }
     console.log(addItem);
+
+
     ////decrement cart item
     const decrement = () => {
-       
+
         let cartIdInc = {
-            id:addItem,
-            
+            id: addItem,
+
             quantityToBuy: quantityAdd - 1
-        } 
+        }
         console.log(cartIdInc);
-        updateApi(cartIdInc).then((response)=>{console.log(response);
-            GetCartItem() 
-        } ).catch((error)=> console.log(error))    
+        updateApi(cartIdInc).then((response) => {
+            console.log(response);
+            GetCartItem()
+        }).catch((error) => console.log(error))
     }
 
     /////
@@ -127,9 +134,31 @@ function QuickView(props) {
     useEffect(() => {
         addToCart()
         GetCartItem()
+    }, [])
+
+
+    //wishlist
+    useEffect(() =>{
+        AddToWishlist()
     },[])
 
 
+    //for add to cart conditional buttons
+    const addToBag = (addItem) => {
+        return (
+            <>
+                {(addItem === 0) ? (
+
+                    <Button variant="contained" color='error' onClick={addbagbtn} >Add to Bag</Button>
+                ) : (
+                    <Button variant="" ><RemoveCircleOutlineOutlinedIcon onClick={decrement} />{quantityAdd}
+                        <AddCircleOutlineOutlinedIcon onClick={increment} /></Button>
+
+                )}
+            </>
+
+        )
+    };
 
     return (
         <div>
@@ -162,9 +191,16 @@ function QuickView(props) {
                         <div>
                             {addToBag(addItem)}
                         </div>
-                        <Button variant="contained" color='error'
-                            sx={{ color: 'white', backgroundColor: 'black' }}>
-                            <FavoriteIcon />Wishlist</Button>
+                        <div>
+                           {
+                            (wishlistId) ?
+                            <Button onClick={addToWishlist} variant="contained" color='error'
+                                sx={{ color: 'white', backgroundColor: 'black' }}>
+                                <FavoriteIcon />Wishlist
+                            </Button> :
+                            <FavoriteIcon />
+                           }
+                        </div>
                     </div>
                 </div>
                 <div className='bookViewDetails'>

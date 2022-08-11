@@ -68,6 +68,10 @@
     justify-content: flex-start;
     font-size: large;
 }
+.bothPrice{
+    display: flex;
+}
+
 
 .feedback {
     margin: 0%;
@@ -83,6 +87,6 @@
 
 .submitBtn {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     outline: none;
 }

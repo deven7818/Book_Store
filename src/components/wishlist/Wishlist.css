@@ -1,0 +1,59 @@
+
+.wishMain{
+    margin-top: 30px;
+    border: 1px solid  rgb(240, 239, 239);
+    width: 78vw;
+    
+}
+
+.wish_header{
+    background-color: rgb(240, 239, 239);
+    border-radius: 2px;
+    height: 10%;
+    display: flex;
+}
+
+.carddata{
+    display: flex;
+    justify-content: center;
+}
+
+.imgbook{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.bookimg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.booktitle{
+
+    display: flex;
+    justify-content: flex-start;
+    text-align: justify;
+}
+
+.detailprice{
+    display: flex;
+}
+
+.autherName {
+    padding: 3px;
+    display: flex;
+    font-size: small;
+    opacity: 0.8;
+}
+
+.details{
+    display: flex;
+}
+.delicon{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    opacity: 0.5;
+}

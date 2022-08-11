@@ -17,7 +17,25 @@ function BookList() {
     const nextPage = (book) => {
          setCurrentBook(book); setView(!view);
         
+    } 
+
+    const getBooks = () => {
+        getBooksList().then((response) => {
+           console.log(response, "rendering data");
+            setBooks(response.data.result)
+            // console.log(response.data.result);
+
+
+        }).catch((error) => {
+            console.log(error);
+        })
     }
+
+    useEffect(() => {
+        getBooks()
+    }, [])
+    //console.log("hello", books)
+
 
     const viewone = (view) => {
         return (
@@ -37,24 +55,6 @@ function BookList() {
             </>
         );
     };
-
-
-    const getBooks = () => {
-        getBooksList().then((response) => {
-           console.log(response, "rendering data");
-            setBooks(response.data.result)
-            // console.log(response.data.result);
-
-
-        }).catch((error) => {
-            console.log(error);
-        })
-    }
-
-    useEffect(() => {
-        getBooks()
-    }, [])
-    //console.log("hello", books)
 
     return (
         <>

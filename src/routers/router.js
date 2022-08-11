@@ -1,6 +1,5 @@
 
 import React from 'react'
-//import { BrowserRouter , Route, Switch } from 'react-router-dom'
 
 import {
     BrowserRouter as Router,
@@ -9,26 +8,24 @@ import {
   } from 'react-router-dom';
 import Account from '../components/account/Account';
 import BookList from '../components/bookslist/BookList';
+import MyCart from '../components/mycart/MyCart';
 import QuickView from '../components/quickview/QuickView';
+import Wishlist from '../components/wishlist/Wishlist';
 import Signup from '../pages/signup/Signup';
 
 function Router1() {
     return (
         <div>
-            {/* <BrowserRouter>
-                <Switch>
-                     <Route exact path="/" component={Signin}/>
-                    <Route path="/signup" component={Signup}/>
-                    <Route path="/dashboard" component={Dashboard}/> 
-                </Switch>
-                </BrowserRouter > */}
+       
 
             <Router>
                 <Routes>
                     <Route exact path="/" element={<Account />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/booklist" element={<BookList />} />
-                    <Route path="/quickview" element={<QuickView />} />
+                    {/* <Route path="/quickview" element={<QuickView />} /> */}
+                    <Route path="/wishlist" element={<Wishlist />} />
+                    <Route path="/mycart" element={<MyCart />} />
                 </Routes>
             </Router>
         </div>
