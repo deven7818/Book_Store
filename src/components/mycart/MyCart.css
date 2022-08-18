@@ -1,10 +1,12 @@
 .mycartMain{
     margin-top: 40px;
     border: 1px solid rgb(199, 194, 194);
+    /* border: 2px solid red; */
     border-radius: 2px;
     display: flex;
     flex-direction: column;
     width: 65vw;
+    height: auto;
 }
 
 .cart{
@@ -57,10 +59,11 @@
     justify-content: flex-end;
 }
 
+
 /* Customer details */
 
 .customerdetails{
-    margin-top: 110px;
+    margin-top: 30px;
     border: 1px solid rgb(199, 194, 194);
     border-radius: 2px;
     display: flex;

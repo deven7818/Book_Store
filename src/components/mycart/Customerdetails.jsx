@@ -153,12 +153,14 @@ function Customerdetails() {
                         <div className='namedetails'>
                             <TextField
                                 onChange={takeFullName}
+                                error={regexObj.fnameBorder} helperText={regexObj.fnameHelper}
                                 id="outlined-basic" label="Full Name"
                                 variant="outlined" size='small'
                                 className="textBox"
                             />
                             <TextField
                                 onChange={takeMobileNumber}
+                                error={regexObj.mobileBorder} helperText={regexObj.mobileHelper}
                                 id="outlined-basic" label="Mobile Number"
                                 type='text'
                                 variant="outlined" size='small'
@@ -168,6 +170,7 @@ function Customerdetails() {
                         <div className='addressdetails'>
                             <TextField
                                 onChange={takeAddress}
+                                error={regexObj.addressBorder} helperText={regexObj.addressHelper}
                                 id="outlined-basic" label="Address"
                                 type='text'
                                 variant="outlined" size='larger'
@@ -177,12 +180,14 @@ function Customerdetails() {
                         <div className='namedetails'>
                             <TextField
                                 onChange={takeCityTown}
+                                error={regexObj.cityBorder} helperText={regexObj.cityHelper}
                                 id="outlined-basic" label="City/town"
                                 variant="outlined" size='small'
                                 className="textBox"
                             />
                             <TextField
                                 onChange={takeState}
+                                error={regexObj.stateBorder} helperText={regexObj.stateHelper}
                                 id="outlined-basic" label="State"
                                 type='text'
                                 variant="outlined" size='small'

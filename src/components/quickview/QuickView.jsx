@@ -65,8 +65,7 @@ function QuickView(props) {
         getCartItem().then((response) => {
             console.log(response);
             let filter = [];
-            console.log(props.book._id);
-            filter = response.data.result.filter((cart) => {
+             filter = response.data.result.filter((cart) => {
                 if (cart.product_id._id === props.book._id) {
                     console.log(cart);
                     setAddItem(cart._id)
@@ -84,6 +83,11 @@ function QuickView(props) {
         })
     }
 
+    useEffect(() => {
+        //  addToCart()
+        GetCartItem()
+        // getBookforCart()
+    }, [])
     ////increment cart item
     const increment = () => {
         console.log(quantityAdd);
@@ -130,12 +134,7 @@ function QuickView(props) {
             console.log(error);
         })
     }
-
-    useEffect(() => {
-        addToCart()
-        GetCartItem()
-    }, [])
-
+ 
 
     //wishlist
     useEffect(() =>{

@@ -15,13 +15,14 @@ function BookList() {
 
 
     const nextPage = (book) => {
-         setCurrentBook(book); setView(!view);
-        
-    } 
+        setCurrentBook(book);
+        setView(!view);
+
+    }
 
     const getBooks = () => {
         getBooksList().then((response) => {
-           console.log(response, "rendering data");
+            console.log(response, "rendering data");
             setBooks(response.data.result)
             // console.log(response.data.result);
 
@@ -42,7 +43,7 @@ function BookList() {
             <>
                 {view ? (
                     <>
-                    
+
                         <h4 className='container bookHeading'>Books</h4>
                         <div className="container bookslist ">
                             {books.map((book) => (<Books nextPage={nextPage} key={book._id} book={book} />))}
@@ -58,9 +59,9 @@ function BookList() {
 
     return (
         <>
-        <div>
-            <Header />
-        </div>
+            <div>
+                <Header />
+            </div>
             {viewone(view)}
         </>
     )

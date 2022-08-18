@@ -63,5 +63,9 @@ export const customerDetailsApi = async (signUpObj) => {
 }
 
 
-
+//customer details
+export const deleteCartItem = async (data) => {
+    let response = await axios.post(`https://bookstore.incubation.bridgelabz.com/bookstore_user/remove_cart_item/${data.id}`, data, headerConfig)
+    return response
+}
 
