@@ -62,8 +62,12 @@
 
 /* Customer details */
 
+
+.cust{
+    margin-top: 50px !important;
+}
 .customerdetails{
-    margin-top: 30px;
+    margin-top: 100px;
     border: 1px solid rgb(199, 194, 194);
     border-radius: 2px;
     display: flex;
@@ -142,4 +146,44 @@
 
 .checkoutbtn{
     padding: 20px;
+}
+
+
+/****** Order summary *****/
+.orderSummary{
+    border: 1px solid rgb(199, 194, 194);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 15px; 
+}
+
+
+.orderBook{
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid red; */
+}
+
+.orderBookInfo{
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid green; */
+    width: 100%;
+    
+    padding: 20px;
+}
+
+.orderBookDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items: flex-start;
+    width: 30%;
+    padding: 20px;
+}
+
+.btnCheckOut{
+    float: right;
+    border-radius: 3px;   
 }

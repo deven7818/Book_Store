@@ -1,0 +1,55 @@
+.orderSuccess{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerTextOrder{
+    margin-top: 20px;
+    border: 1px solid #DBDBDB;
+    width: 70%;
+    height: 30px;
+    background-color: #FAFAFA;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.detailsOrder{
+    border: 1px solid #DBDBDB;
+    width: 70%;
+    height: 70px;
+    background-color: #FAFAFA;
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+}
+
+#emailOrder{
+    border: 1px solid #DBDBDB;
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contactOrder{
+    border: 1px solid #DBDBDB;
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+#addressOrder{
+    border: 1px solid #DBDBDB;
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}

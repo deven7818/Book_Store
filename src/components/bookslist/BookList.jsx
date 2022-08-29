@@ -1,3 +1,4 @@
+import { Pagination } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { getBooksList } from '../../service/dataservice';
 import Books from '../books/Books';
@@ -53,6 +54,8 @@ function BookList() {
                 ) : (
                     <QuickView book={currentBook} />
                 )}
+
+                <Pagination className='pageNumber' count={10} disabled />
             </>
         );
     };

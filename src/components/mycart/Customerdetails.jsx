@@ -7,8 +7,9 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import Order from './Order';
+// import Order from './Order';
 import { customerDetailsApi } from '../../service/dataservice';
+import OrderSummary from './Order';
 
 
 
@@ -119,9 +120,9 @@ function Customerdetails() {
         return (
             <>
                 {order ? (
-                    <Button onClick={handleClick} sx={{ padding: 1, margin: 2 }} variant="contained" orderbtn={orderbtn} >Continue</Button>
+                    <Button onClick={handleClick} sx={{  margin: 1 }} variant="contained" orderbtn={orderbtn} >Continue</Button>
                 ) : (
-                    <Order summery={summery} />
+                    <OrderSummary summery={summery} />
                 )}
             </>
         )
@@ -139,7 +140,7 @@ function Customerdetails() {
         <div>
 
             {/* ...................Customer details............. */}
-            <div className=''>
+            <div className='cust'>
                 <div className='customerdetails'>
                     <div className='titleLocation'>
                         <h4>Customer details</h4>

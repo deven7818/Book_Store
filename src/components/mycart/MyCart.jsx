@@ -39,9 +39,9 @@ function MyCart(props) {
         return (
             <>
                 {cart ? (
-                    <Button onClick={customerdetails} sx={{ padding: 1, marginLeft: 50 }} variant="contained" >Place Order</Button>
+                    <Button onClick={customerdetails} sx={{ padding: 1, marginLeft: 80 }} variant="contained" >Place Order</Button>
                 ) : (
-                    <Customerdetails customerdetails={customerdetails} />
+                    <Customerdetails sx={{ marginTop: 80 }} customerdetails={customerdetails} />
                 )}
             </>
         )
@@ -116,11 +116,11 @@ function MyCart(props) {
 
                     </div>
                     {/* {console.log(addItem,"add item at my cart")} */}
-
-                </div>
-                <div className=''>
+                    <div className=''>
                     {customer(cart)}
                 </div>
+                </div>
+                
             </div>
 
 

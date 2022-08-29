@@ -69,3 +69,10 @@ export const deleteCartItem = async (data) => {
     return response
 }
 
+
+
+//order summary api
+export const orderSummaryApi = (orderObj) => {
+    let response = axios.post(`https://bookstore.incubation.bridgelabz.com/bookstore_user/add/order`,orderObj,headerConfig);
+    return response;
+}
